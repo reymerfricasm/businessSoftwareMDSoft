@@ -1,0 +1,53 @@
+﻿.img {
+    text-align: center;
+    align-content: center;
+    height: 200px;
+    width: 400px;
+}
+
+.center {
+    display: inline;
+    float: none;
+    text-decoration:none;   
+}
+
+.logo {
+    float: left;
+    display: inline;
+}
+
+.img-2 {
+    display: inline;
+    float: left;
+    height: 45px;
+    width: 150px;
+}
+
+.letter {
+    color: white;
+}
+.letter-2 {
+    color:black;
+}
+
+.img-3 {
+    height:100%;
+    width:100%;
+}
+.boder {
+    border:solid;
+    padding-bottom:18px;
+}
+
+.space {
+    padding-top:5px;
+    padding-bottom:0px;
+}
+
+.space-2 {
+    margin-right:10px;
+}
+
+.footer {
+
+}
