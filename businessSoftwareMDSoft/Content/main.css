@@ -51,3 +51,7 @@
 .footer {
 
 }
+.usuNombre {
+    display:block;
+    float:right;
+}

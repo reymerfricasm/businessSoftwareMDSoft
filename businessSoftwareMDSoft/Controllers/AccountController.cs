@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using businessSoftwareMDSoft.Models;
+using System.Web.Security;
 
 namespace businessSoftwareMDSoft.Controllers
 {
@@ -30,7 +31,7 @@ namespace businessSoftwareMDSoft.Controllers
         //
         // GET: /Account/Login
         [AllowAnonymous]
-        public ActionResult Login(string returnUrl)
+        public ActionResult Logins(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
             return View();
@@ -38,28 +39,43 @@ namespace businessSoftwareMDSoft.Controllers
 
         //
         // POST: /Account/Login
-        [HttpPost]
+        //[HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        [Authorize]
+        [HttpGet]
+        public ActionResult Login(SYSUser model, string returnUrl)
         {
-            if (ModelState.IsValid)
+            Request.Url.ToString();
+
+            if (model.LoginName != null)
             {
-                var user = await UserManager.FindAsync(model.UserName, model.Password);
-                if (user != null)
+                BSEntities db = new BSEntities();
+                if (ModelState.IsValid)
                 {
-                    await SignInAsync(user, model.RememberMe);
-                    return RedirectToLocal(returnUrl);
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Invalid username or password.");
+                    List<SYSUser> use;
+
+                    use = db.SYSUser.Where(c => c.LoginName == model.LoginName)
+                                                .Where(c => c.PasswordEncryptedText == model.PasswordEncryptedText).ToList();
+                    if (use.Count > 0)
+                    {
+                        return RedirectToAction("Index", "Home");
+
+                    }
+                    else
+                    {
+                        return RedirectToAction("Login", "Account");
+                    }
                 }
             }
-
             // Si llegamos a este punto, es que se ha producido un error y volvemos a mostrar el formulario
             return View(model);
         }
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login", "Account");
+        }
+
 
         //
         // GET: /Account/Register
@@ -82,7 +98,7 @@ namespace businessSoftwareMDSoft.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInAsync(user, isPersistent: false);
+                    await SignInAsync(user);
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -206,7 +222,7 @@ namespace businessSoftwareMDSoft.Controllers
             var user = await UserManager.FindAsync(loginInfo.Login);
             if (user != null)
             {
-                await SignInAsync(user, isPersistent: false);
+                await SignInAsync(user);
                 return RedirectToLocal(returnUrl);
             }
             else
@@ -272,7 +288,7 @@ namespace businessSoftwareMDSoft.Controllers
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
                     if (result.Succeeded)
                     {
-                        await SignInAsync(user, isPersistent: false);
+                        await SignInAsync(user);
                         return RedirectToLocal(returnUrl);
                     }
                 }
@@ -331,11 +347,11 @@ namespace businessSoftwareMDSoft.Controllers
             }
         }
 
-        private async Task SignInAsync(ApplicationUser user, bool isPersistent)
+        private async Task SignInAsync(ApplicationUser user)
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
             var identity = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
-            AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, identity);
+            AuthenticationManager.SignIn(new AuthenticationProperties(), ( identity ));
         }
 
         private void AddErrors(IdentityResult result)

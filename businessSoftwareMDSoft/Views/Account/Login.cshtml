@@ -1,5 +1,4 @@
 ﻿@model businessSoftwareMDSoft.Models.SYSUser
-
 @{
     ViewBag.Title = "Login";
 }
@@ -14,24 +13,25 @@
             <br />
             <h2>Bienvenidos a MovilBusiness</h2>
             <h4>Por favor ingrese su Usuario y Clave para entrar al sistema </h4>
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
             {
-                @Html.AntiForgeryToken()
+                @Html.AntiForgeryToken(){
+                                        }
                 
                 <hr />
                 @Html.ValidationSummary(true)
                 <div class="form-group">
-                    @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
+                    @Html.LabelFor(m => m.LoginName, new { @class = "col-md-2 control-label" })
                     <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.UserName)
+                        @Html.TextBoxFor(m => m.LoginName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.LoginName)
                     </div>
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                    @Html.LabelFor(m => m.PasswordEncryptedText, new { @class = "col-md-2 control-label" })
                     <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password)
+                        @Html.PasswordFor(m => m.PasswordEncryptedText, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.PasswordEncryptedText)
                     </div>
                 </div>
                 <div class="form-group">
