@@ -13,7 +13,7 @@ namespace businessSoftwareMDSoft.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public class BSEntities : DbContext
+    public partial class BSEntities : DbContext
     {
         public BSEntities()
             : base("name=BSEntities")

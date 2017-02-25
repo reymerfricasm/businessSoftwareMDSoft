@@ -11,21 +11,16 @@ namespace businessSoftwareMDSoft.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq.Expressions;
-    using System.ComponentModel.DataAnnotations;
-
     
-    public class SYSUser
+    public partial class SYSUser
     {
-
         public int SYSUserID { get; set; }
-        [Display(Name = "Usuario:")]
         public string LoginName { get; set; }
-        [Display(Name = "Contraseña:")]
         public string PasswordEncryptedText { get; set; }
         public int RowCreatedSYSUserID { get; set; }
         public Nullable<System.DateTime> RowCreatedDateTime { get; set; }
         public int RowModifiedSYSUserID { get; set; }
         public Nullable<System.DateTime> RowMOdifiedDateTime { get; set; }
+        public string isActive { get; set; }
     }
 }

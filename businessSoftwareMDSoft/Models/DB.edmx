@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="SYSUser">
           <Key>
             <PropertyRef Name="SYSUserID" />
@@ -16,12 +16,12 @@
           <Property Name="RowCreatedDateTime" Type="datetime" />
           <Property Name="RowModifiedSYSUserID" Type="int" Nullable="false" />
           <Property Name="RowMOdifiedDateTime" Type="datetime" />
+          <Property Name="isActive" Type="varchar" MaxLength="1" />
         </EntityType>
         <EntityContainer Name="BSModelStoreContainer">
           <EntitySet Name="SYSUser" EntityType="Self.SYSUser" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -36,6 +36,7 @@
           <Property Name="RowCreatedDateTime" Type="DateTime" Precision="3" />
           <Property Name="RowModifiedSYSUserID" Type="Int32" Nullable="false" />
           <Property Name="RowMOdifiedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="isActive" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityContainer Name="BSEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="SYSUser" EntityType="Self.SYSUser" />
@@ -49,6 +50,7 @@
           <EntitySetMapping Name="SYSUser">
             <EntityTypeMapping TypeName="BSModel.SYSUser">
               <MappingFragment StoreEntitySet="SYSUser">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
                 <ScalarProperty Name="SYSUserID" ColumnName="SYSUserID" />
                 <ScalarProperty Name="LoginName" ColumnName="LoginName" />
                 <ScalarProperty Name="PasswordEncryptedText" ColumnName="PasswordEncryptedText" />

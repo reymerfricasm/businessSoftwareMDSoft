@@ -41,7 +41,6 @@ namespace businessSoftwareMDSoft.Controllers
         // POST: /Account/Login
         //[HttpPost]
         [AllowAnonymous]
-        [Authorize]
         [HttpGet]
         public ActionResult Login(SYSUser model, string returnUrl)
         {
