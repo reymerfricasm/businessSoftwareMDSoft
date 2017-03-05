@@ -15,37 +15,16 @@ namespace businessSoftwareMDSoft.Controllers
 {
     public class HomeController : Controller
     {
-        //[Authorize(Users = "Reymer")]
-        //[Authorize(Roles = "Administrador")]
+        //[Authorize(SYSUser(Logi))]
+        //[Authorize]
         public ActionResult Index(SYSUser model)
         {
-            if (model.isActive != "0")
-            {
-                BSEntities db = new BSEntities();
-                List<SYSUser> use;
-                use = db.SYSUser.Find(model.isActive);
-                if (ModelState.IsValid)
-                {
-                    
-
-                }
-            }
-            
             return View();
         }
-
-        public ActionResult About()
+        public ActionResult Logout()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login", "Account");
         }
     }
 }

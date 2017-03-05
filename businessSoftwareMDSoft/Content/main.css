@@ -55,3 +55,9 @@
     display:block;
     float:right;
 }
+
+
+.horizontal {
+    display:inline;
+    float:none;
+}

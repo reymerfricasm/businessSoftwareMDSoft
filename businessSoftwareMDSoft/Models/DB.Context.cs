@@ -26,5 +26,6 @@ namespace businessSoftwareMDSoft.Models
         }
     
         public virtual DbSet<SYSUser> SYSUser { get; set; }
+        public virtual DbSet<Estados> Estados { get; set; }
     }
 }

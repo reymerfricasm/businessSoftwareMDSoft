@@ -1,0 +1,101 @@
+﻿@model businessSoftwareMDSoft.Models.Estados
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Estados</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Tabla, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Tabla)
+                @Html.ValidationMessageFor(model => model.Tabla)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Estado, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Estado)
+                @Html.ValidationMessageFor(model => model.Estado)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Descripcion, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Descripcion)
+                @Html.ValidationMessageFor(model => model.Descripcion)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Editar, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Editar)
+                @Html.ValidationMessageFor(model => model.Editar)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Anular, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Anular)
+                @Html.ValidationMessageFor(model => model.Anular)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Imprimir, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Imprimir)
+                @Html.ValidationMessageFor(model => model.Imprimir)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EnviarHistoricos, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EnviarHistoricos)
+                @Html.ValidationMessageFor(model => model.EnviarHistoricos)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Tracking, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Tracking)
+                @Html.ValidationMessageFor(model => model.Tracking)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Visualizar, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Visualizar)
+                @Html.ValidationMessageFor(model => model.Visualizar)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

@@ -5,6 +5,21 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="BSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Estados">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tabla" Type="nvarchar" MaxLength="50" />
+          <Property Name="Estado" Type="smallint" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="100" />
+          <Property Name="Editar" Type="smallint" />
+          <Property Name="Anular" Type="smallint" />
+          <Property Name="Imprimir" Type="smallint" />
+          <Property Name="EnviarHistoricos" Type="smallint" />
+          <Property Name="Tracking" Type="smallint" />
+          <Property Name="Visualizar" Type="smallint" />
+        </EntityType>
         <EntityType Name="SYSUser">
           <Key>
             <PropertyRef Name="SYSUserID" />
@@ -19,6 +34,7 @@
           <Property Name="isActive" Type="varchar" MaxLength="1" />
         </EntityType>
         <EntityContainer Name="BSModelStoreContainer">
+          <EntitySet Name="Estados" EntityType="Self.Estados" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SYSUser" EntityType="Self.SYSUser" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -40,7 +56,23 @@
         </EntityType>
         <EntityContainer Name="BSEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="SYSUser" EntityType="Self.SYSUser" />
+          <EntitySet Name="Estados" EntityType="BSModel.Estados" />
         </EntityContainer>
+        <EntityType Name="Estados">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tabla" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Estado" Type="Int16" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Editar" Type="Int16" />
+          <Property Name="Anular" Type="Int16" />
+          <Property Name="Imprimir" Type="Int16" />
+          <Property Name="EnviarHistoricos" Type="Int16" />
+          <Property Name="Tracking" Type="Int16" />
+          <Property Name="Visualizar" Type="Int16" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -58,6 +90,22 @@
                 <ScalarProperty Name="RowCreatedDateTime" ColumnName="RowCreatedDateTime" />
                 <ScalarProperty Name="RowModifiedSYSUserID" ColumnName="RowModifiedSYSUserID" />
                 <ScalarProperty Name="RowMOdifiedDateTime" ColumnName="RowMOdifiedDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estados">
+            <EntityTypeMapping TypeName="BSModel.Estados">
+              <MappingFragment StoreEntitySet="Estados">
+                <ScalarProperty Name="Visualizar" ColumnName="Visualizar" />
+                <ScalarProperty Name="Tracking" ColumnName="Tracking" />
+                <ScalarProperty Name="EnviarHistoricos" ColumnName="EnviarHistoricos" />
+                <ScalarProperty Name="Imprimir" ColumnName="Imprimir" />
+                <ScalarProperty Name="Anular" ColumnName="Anular" />
+                <ScalarProperty Name="Editar" ColumnName="Editar" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Tabla" ColumnName="Tabla" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

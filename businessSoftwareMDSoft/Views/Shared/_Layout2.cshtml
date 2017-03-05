@@ -1,0 +1,25 @@
+﻿
+@{
+    //ViewBag.Title = "_Layout2";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<br />  
+<div class="container">
+    <div class=" col-md-12">
+        <nav class="navbar navbar-inverse bg-primary top">
+            <ul>
+                <li class="horizontal letter">Configuracion</li>
+                <li class="horizontal letter">Favoritos</li>
+                <li class="horizontal letter">Inicio</li>
+                <li class="horizontal letter">Seguridad</li>  
+                @Html.ActionLink("Salir", "Logout", "Account", new {@class="horizontal letter"});
+            </ul>
+        </nav>
+    </div>
+</div>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", required: false)
+@RenderBody()
+
